@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.raj.pojo.Address;
 import com.raj.pojo.Customer;
 
-public class CustomerUnmarshallerServiceImplTest {
+public class CustomerConverterServiceImplTest {
 	private static String xml =  null;
 	private static String xmlDiffFromObj =  null;
 	private static String invalidXml =  null;
