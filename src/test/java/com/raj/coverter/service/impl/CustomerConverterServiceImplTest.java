@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.raj.coverter.service.api.IConverter;
 import com.raj.coverter.service.api.IJaxBInitializer;
 import com.raj.pojo.Address;
 import com.raj.pojo.Customer;
@@ -16,12 +17,12 @@ public class CustomerConverterServiceImplTest {
 	private static String xml =  null;
 	private static String xmlDiffFromObj =  null;
 	private static String invalidXml =  null;
-	private static CustomerConverterServiceImpl serviceImpl;
+	private static IConverter<Customer> serviceImpl;
 	@BeforeClass
 	public static void setUp() throws JAXBException{
 		IJaxBInitializer jaxbContext = new JaxBInitializerServiceImpl();
 		jaxbContext.setClassesToBeBound(Customer.class);
-		serviceImpl = new CustomerConverterServiceImpl(jaxbContext);
+		serviceImpl = new ConverterServiceImpl<Customer>(jaxbContext);
 		xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><custNum>1234</custNum><custName>Rajendar Kumar</custName><parentNum>456</parentNum><address><pNum>123, 2nd floor</pNum><cityName>New Delhi</cityName><cityCode>ABC</cityCode></address></customer>";
 		xmlDiffFromObj = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><custNum>12345</custNum><custName>Rajendar Kumar</custName><parentNum>456</parentNum><address><pNum>123, 2nd floor</pNum><cityName>New Delhi</cityName><cityCode>ABC</cityCode></address></customer>";
 		//</custNum> missing

@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.raj.coverter.service.api.IConverter;
 import com.raj.coverter.service.api.IJaxBInitializer;
 import com.raj.pojo.Address;
 import com.raj.pojo.Customer;
@@ -22,7 +23,7 @@ import com.raj.pojo.Customer;
 public class AddressConverterServiceImplTest {
 
 	private static String xml =  null;
-	private static AddressConverterServiceImpl serviceImpl;
+	private static IConverter<Address> serviceImpl;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -30,7 +31,7 @@ public class AddressConverterServiceImplTest {
 	public static void setUpBeforeClass() throws Exception {
 		IJaxBInitializer jaxbContext = new JaxBInitializerServiceImpl();
 		jaxbContext.setClassesToBeBound(Customer.class, Address.class);
-		serviceImpl = new AddressConverterServiceImpl(jaxbContext);
+		serviceImpl = new ConverterServiceImpl<Address>(jaxbContext);
 		xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><address><pNum>123, 2nd floor</pNum><cityName>New Delhi</cityName><cityCode>ABC</cityCode></address>";
 	}
 
