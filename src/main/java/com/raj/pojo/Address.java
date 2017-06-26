@@ -4,11 +4,13 @@
 package com.raj.pojo;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Rajendar Kumar
  *
  */
+@XmlRootElement
 public class Address {
 
 	private String pNum;

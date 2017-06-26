@@ -2,13 +2,13 @@ package com.raj.coverter.service.impl;
 
 import java.io.UnsupportedEncodingException;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.raj.coverter.service.api.IJaxBInitializer;
 import com.raj.pojo.Address;
 import com.raj.pojo.Customer;
 
@@ -19,7 +19,8 @@ public class CustomerConverterServiceImplTest {
 	private static CustomerConverterServiceImpl serviceImpl;
 	@BeforeClass
 	public static void setUp() throws JAXBException{
-		JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+		IJaxBInitializer jaxbContext = new JaxBInitializerServiceImpl();
+		jaxbContext.setClassesToBeBound(Customer.class);
 		serviceImpl = new CustomerConverterServiceImpl(jaxbContext);
 		xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><custNum>1234</custNum><custName>Rajendar Kumar</custName><parentNum>456</parentNum><address><pNum>123, 2nd floor</pNum><cityName>New Delhi</cityName><cityCode>ABC</cityCode></address></customer>";
 		xmlDiffFromObj = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><custNum>12345</custNum><custName>Rajendar Kumar</custName><parentNum>456</parentNum><address><pNum>123, 2nd floor</pNum><cityName>New Delhi</cityName><cityCode>ABC</cityCode></address></customer>";

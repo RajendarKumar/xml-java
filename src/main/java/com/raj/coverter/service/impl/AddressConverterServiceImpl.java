@@ -13,29 +13,29 @@ import javax.xml.bind.Unmarshaller;
 
 import com.raj.coverter.service.api.IConverter;
 import com.raj.coverter.service.api.IJaxBInitializer;
-import com.raj.pojo.Customer;
+import com.raj.pojo.Address;
 
 /**
  * @author Rajendar Kumar
  *
  */
-public class CustomerConverterServiceImpl implements IConverter<Customer>{
+public class AddressConverterServiceImpl implements IConverter<Address>{
 
 	private IJaxBInitializer jaxbContext;
-	public CustomerConverterServiceImpl(IJaxBInitializer jaxbContext){
+	public AddressConverterServiceImpl(IJaxBInitializer jaxbContext){
 		this.jaxbContext=jaxbContext;
 	}
-	public Customer Unmarshall(String xml) throws JAXBException {
+	public Address Unmarshall(String xml) throws JAXBException {
 		Unmarshaller unmarshaller = jaxbContext.initJAXBContext().createUnmarshaller();
 		StringReader reader = new StringReader(xml);
-		return (Customer) unmarshaller.unmarshal(reader);
+		return (Address) unmarshaller.unmarshal(reader);
 	}
 
 	@Override
-	public String marshall(Customer customer) throws JAXBException, UnsupportedEncodingException {
+	public String marshall(Address address) throws JAXBException, UnsupportedEncodingException {
 		Marshaller marshaller = jaxbContext.initJAXBContext().createMarshaller();
 		ByteArrayOutputStream outputStream =  new ByteArrayOutputStream();
-		marshaller.marshal(customer,outputStream);
+		marshaller.marshal(address,outputStream);
 		return new String(outputStream.toByteArray(), System.getProperty("file.encoding"));
 	}
 

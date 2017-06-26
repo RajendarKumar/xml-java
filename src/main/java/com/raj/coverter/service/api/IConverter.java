@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
  * @author Rajendar Kumar
  *
  */
-public interface ICustomerConverter<T>{
+public interface IConverter<T>{
 
 	/**
 	 * <p>Accepts valid xml and converts it back to java object.<p>
